@@ -1,0 +1,333 @@
+Droplet Name: www.canopusinstruments.com 
+IP Address: 139.59.78.49 
+Username: root 
+New Password: e&2f%T#tO1CZekwEmRj$Rq30oI
+ 
+Droplet Name: indiacartoday.com
+IP Address: 139.59.59.66
+Username: root
+Password: unthdn&^vfd22eea209c7390 
+
+Droplet Name: skovian.com 
+IP Address: 139.59.78.71 
+Username: root 
+Password: c65608cf2b72202bd587aa2945a
+
+Droplet Name: justforhearts.org-genesis
+IP Address: 139.59.30.94
+Username: root
+new Password: 83f25b23dfdsd09b5eb60b
+
+Droplet Name: law-tarazoo-app-db-sqlite
+IP Address: 139.59.86.172
+Username: root
+Password: 3d2a3a8b
+Password: d86ent67ion1cffsd86adadd2a
+
+Droplet Name: nirmandevelopers.in
+IP Address: 139.59.78.239
+Username: root
+Password: 68a88c6f033adabdcc7ae62cd5a
+
+Droplet Name: smilekraftdentistry 
+IP Address: 139.59.43.224 
+Username: root 
+Password: 13MkkwjdbA#$SMIK!2Ok31d
+
+
+Droplet Name: indiacartoday.com
+IP Address: 139.59.83.50
+Username: root
+Password: unthdn&^vfd22eea209c7390 
+
+
+Droplet Name: sweetsmiledental.com 
+IP Address: 139.59.17.231 
+Username: root 
+Password: gu4x1aA#&*8SB73MWSLSPwl
+Database pswd: root
+
+
+Droplet Name: www.losttheplot.in
+IP Address: 139.59.79.137
+Username: root 
+New Password: 1aA#&*8S53f3b3a57a88bc12e
+
+
+Droplet Name: orientgroup.biz 
+IP Address: 139.59.94.17 
+Username: root 
+Password:  1aA#&*8cfbb4x1aA#&9a789c1
+
+Droplet Name: www.kokanspaces.com
+IP Address: 139.59.92.91
+Username: root
+Password : 3158593b572139929630862a34
+
+Droplet Name: abilwebsites 
+IP Address: 159.89.168.203 
+Username: root 
+Password: sdfv%4283jnjvv*&^%$
+-------------------
+
+
+/** MySQL database username */
+define('DB_USER', 'skovianc_skovian');
+
+/** MySQL database password */
+define('DB_PASSWORD', '^=5i6^oxybJM');
+
+
+User: litmaid_skovian
+Database: litmaid_litmaid
+
+
+
+SakaAllSite
+IP Address : 52.221.26.219
+User : ec2-user
+Password : S@k@l*1947$
+MySQL root password : Pr0d!!S@L
+----------------------------------Commands
+
+Server DNS: svr30-esl-se.svr.cygrid.net
+Server IP: 85.118.207.28
+SSH port: 1900
+
+Server inloggningsuppgifter:
+
+Användarnamn: root
+Lösenord: VQL8i71vta#
+
+SSH Användare: nordmed
+Lösenord: NPALi755mb
+
+Mysql root användare
+
+Användarnamn: root
+Lösenord: TVQ7i88nva!
+--------------------
+
+to free buffer 
+
+df -h
+
+free -m
+
+sync; echo 3 > /proc/sys/vm/drop_caches
+
+
+mysql -u root -p
+
+sudo systemctl restart httpd
+systemctl restart php74-php-fpm.service
+systemctl restart mariadb
+
+
+
+_______________________
+To Skip cache for selected page
+
+	if ($request_uri ~* "/my-account/|/cart/|/checkout/|/book-an-appointment/|/wp-admin/|/xmlrpc.php|wp-.*.php|/feed/|index.php|sitemap(_index)?.xml") {
+		set $skip_cache 1;
+	}
+-----
+	unzip filename.zip  		 // to extrate
+	zip -r bhansalis-bk.zip bhansalis 		// to zip all files
+-----
+
+--------------------------
+Permission to folder
+
+sudo chown -R www-data:www-data /var/www/websites/
+--------------------------
+
+mysql -u root -p
+
+
+echo "This is the body of the email" | mail -s "This is the subject line" shashankambagade@gmail.com
+----------------------
+
+CREATE DATABASE bhansali_db DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
+GRANT ALL ON bhansali_db.* TO 'bhansali_user'@'localhost' IDENTIFIED BY 'EJJt+%5a_*s@';
+
+FLUSH PRIVILEGES;
+
+Quit
+
+-----
+#To create Dump
+
+mysqldump -u bhansalis_user -p  bhansalis_data > backup_name.sql
+
+-----
+#To export the dump to db
+
+mysql -u bhansali_user -p -D bhansali_db < skovianc_bhansalis.sql
+
+
+/***** site url querry**/
+
+UPDATE wp_options SET option_value = replace( option_value, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' ) WHERE option_name = 'home' OR option_name = 'siteurl';
+
+UPDATE wp_posts SET post_content = replace( post_content, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' ),  guid = replace( guid, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+
+UPDATE wp_yoast_seo_links SET url = replace( url, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+
+UPDATE wp_usermeta SET meta_value = replace( meta_value, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+UPDATE wp_posts SET post_excerpt = replace( post_excerpt, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+UPDATE wp_postmeta SET meta_value = replace( meta_value, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+UPDATE wp_frm_items SET description = replace( description, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+UPDATE wp_revslider_slides SET params = replace( params, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+UPDATE wp_revslider_slides SET layers = replace( layers, 'https://agloriabeauty.se', 'https://www.beautycentre.se/solna' );
+
+
+
+-------
+concat the files
+
+AddTrust_External_CA_Root.crt  COMODO_RSA_Certification_Authority.crt  
+
+ cat nutrasupplements_in.crt AddTrust_External_CA_Root.crt COMODO_RSA_Certification_Authority.crt  >> nutrasupplements_in_chain.crt
+
+------------
+
+Nginx Default file redirects
+
+location /2016/10/ { rewrite ^(.*)$ https://www.bonsainamaste.com/product/2018-bonsai-convention-india/ ; }
+
+#for sepecialCharter
+
+rewrite ^/product-category/tours/?.*$ https://www.bonsainamaste.com/product/2018-bonsai-convention-india/  permanent;
+
+rewrite ^/product-category/tours/(.*)$ https://www.bonsainamaste.com/product/2018-bonsai-convention-india/  permanent;
+
+
+------------
+
+<IfModule mod_deflate.c>
+  # Compress HTML, CSS, JavaScript, Text, XML and fonts
+  AddOutputFilterByType DEFLATE application/javascript
+  AddOutputFilterByType DEFLATE application/rss+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+  AddOutputFilterByType DEFLATE application/x-font
+  AddOutputFilterByType DEFLATE application/x-font-opentype
+  AddOutputFilterByType DEFLATE application/x-font-otf
+  AddOutputFilterByType DEFLATE application/x-font-truetype
+  AddOutputFilterByType DEFLATE application/x-font-ttf
+  AddOutputFilterByType DEFLATE application/x-javascript
+  AddOutputFilterByType DEFLATE application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/xml
+  AddOutputFilterByType DEFLATE font/opentype
+  AddOutputFilterByType DEFLATE font/otf
+  AddOutputFilterByType DEFLATE font/ttf
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE image/x-icon
+  AddOutputFilterByType DEFLATE text/css
+  AddOutputFilterByType DEFLATE text/html
+  AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE text/plain
+  AddOutputFilterByType DEFLATE text/xml
+
+  # Remove browser bugs (only needed for really old browsers)
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  Header append Vary User-Agent
+</IfModule>
+
+<ifModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file .(html?|txt|css|js|php|pl)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/x-javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</ifModule>
+
+
+<IfModule mod_expires.c>
+ExpiresActive On
+<FilesMatch "\.(flv|ico|pdf|avi|mov|ppt|doc|mp3|wmv|wav|js|css|gif|jpg|jpeg|png|swf|svg|woff)$">
+ExpiresDefault A29030400
+</FilesMatch>
+</IfModule>
+
+------------------------------------
+
+jQuery.noConflict()(function($){
+  // jQuery code here
+});
+
+<script>
+$(function($){
+ .....
+})(jQuery);
+</script>
+
+
+///Disable scroll
+
+<script>
+(function(e){"use strict";function i(t,n){this.opts=e.extend({handleKeys:!0,scrollEventKeys:[32,33,34,35,36,37,38,39,40]},n);this.$container=t;this.$document=e(document);this.disable()}var t,n=function(e){for(var t=0;t<this.opts.scrollEventKeys.length;t++)if(e.keyCode===this.opts.scrollEventKeys[t]){e.preventDefault();return}},r=function(e){e.preventDefault()};i.prototype={disable:function(){var e=this;e.$container.on("mousewheel.UserScrollDisabler DOMMouseScroll.UserScrollDisabler touchmove.UserScrollDisabler",r);e.opts.handleKeys&&e.$document.on("keydown.UserScrollDisabler",function(t){n.call(e,t)})},undo:function(){var e=this;e.$container.off(".UserScrollDisabler");e.opts.handleKeys&&e.$document.off(".UserScrollDisabler")}};e.fn.disablescroll=function(e){!t&&(typeof e=="object"||!e)?t=new i(this,e):t&&t[e]?t[e].call(t):t&&t.disable.call(t)}})(jQuery);
+(function($){
+  $(document).ready(function() {
+    $('.page-template').stickem();
+    $('.post-template-default').stickem();
+    $("#v_container a").attr("target", "");
+    var $nonScrollable = $("html");
+    
+    var flag = true;
+
+    $(".fusion-flyout-menu-icons").on('click', function(){
+      console.log('clicked');
+      if(flag){
+        flag = !flag;
+        $nonScrollable.disablescroll();
+      }
+      else{
+        flag = !flag;
+        $nonScrollable.disablescroll("undo");
+      }
+    });
+  });
+})(jQuery);
+</script>
+
+------------------------------------
+
+
+------
+CSS.
+
+.update-banner:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: -webkit-linear-gradient(349deg, rgba(16, 184, 87, .4) 0, rgba(16, 184, 87, .4) 1%, rgba(23, 183, 223, .4) 100%);
+    background-image: -o-linear-gradient(349deg, rgba(16, 184, 87, .4) 0, rgba(16, 184, 87, .4) 1%, rgba(23, 183, 223, .4) 100%);
+    background-image: linear-gradient(-259deg, rgba(16, 184, 87, .4) 0, rgba(16, 184, 87, .4) 1%, rgba(23, 183, 223, .4) 100%);
+    z-index: -1;
+    background-color: rgba(51, 51, 51, .5);
+}
+
+
+ini_set('display_errors','Off');
+ini_set('error_reporting', E_ALL );
+define('WP_DEBUG', false);
+define('WP_DEBUG_DISPLAY', false);
