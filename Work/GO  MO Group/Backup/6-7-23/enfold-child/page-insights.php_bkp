@@ -1,0 +1,358 @@
+<?php
+/*
+Template Name: Insights page
+*/
+get_header(); ?>
+<?php if ( have_posts() ) : while ( have_posts() ) : the_post(); ?>
+<style type="text/css">
+.filters-section{
+	padding-top: 30px;
+	padding-bottom: 30px;
+	border-bottom: 1px solid #dbdbdb;
+}
+.filters-section h3{
+	font-family: 'Roboto Slab', serif;
+    font-size: 32px;
+    line-height: 35px;
+    font-weight: bold;
+    letter-spacing: -1px;
+    color: #0e4d78;
+}
+.current-filters-section{
+	display: none;
+	padding-top: 30px;
+	padding-bottom: 30px;
+}
+.current-filters-section .current-filter-text{
+	display: inline-block;
+    font-size: 19px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #fff;
+    text-transform: uppercase;
+}
+.current-filters-section .current-filters{
+	display: inline-block;
+	padding-left: 30px;
+}
+.current-filters-section .filter-in-bucket{
+	display: inline-block;
+	border: 1px solid #0e4d78;
+    margin-right: 10px;
+    position: relative;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+.current-filters-section .current-filters span{
+	display: inline-block;
+	font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    color: #0e4d78;
+    padding: 6px 8px;
+}
+.current-filters-section .filter-in-bucket .close{
+    padding: 6px 8px;
+    font-size: 16px;
+    font-weight: 400;
+    background: #C41818;
+	color: #fff;
+    border-left: 1px solid #0e4d78;
+	display: inline-block;
+    cursor: pointer;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    transition: all 500ms ease;
+    filter: alpha(opacity=50);
+    opacity: 0.5;
+    text-shadow: none;
+}
+.current-filters-section .filter-in-bucket .close:hover{
+	background: #C41818;
+	color: #fff;
+    text-decoration: none;
+    filter: alpha(opacity=100);
+    opacity: 1;
+}
+.page-template-page-insights .blogs-section .post-block{
+	margin-bottom: 40px;
+}
+.page-template-page-insights .blogs-section{
+	padding-bottom: 20px;
+}
+.insights-posts-wrap{
+	position: relative;
+}
+.insights-posts-wrap.loading .service-item{
+	opacity: 0.3;
+}
+.insights-posts-wrap .loader{
+	display: none;
+    position: absolute;
+    font-size: 40px;
+    color: #0e4d78;
+	top: 20%;
+	left: 0;
+	right: 0;
+	text-align: center;
+    z-index: 2;
+}
+.insights-posts-wrap.loading .loader{
+	display: block;
+}
+.insights-loadmore {
+    margin-bottom: 30px;
+}
+.insights-loadmore .small-loader{
+	margin-left: 10px;
+	display: none;
+	position: absolute;
+	top: 15px;
+}
+.insights-loadmore.loading .small-loader{
+	display: inline-block;
+}
+@media (min-width: 992px){
+	.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+	.col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,{
+		float: left;
+	}
+	.col-md-3 {
+		width: 25%;
+	}
+	.col-md-4 {
+		width: 33.33333333%;
+	}
+	.col-md-9 {
+		width: 75%;
+	}
+}
+@media (min-width: 1200px){
+	.col-lg-3{
+		width: 25%;
+	}
+}
+
+</style>
+
+<div class='container_wrap container_wrap_first main_color <?php avia_layout_class( 'main' ); ?>'>
+	<div class='container template-blog template-single-blog '>
+		<div class="container-fluid no-padding filters-section section-wrap" style="padding-top: 60px;">
+			<div class="col-xs-12 col-md-3">
+				<h3>
+					<?php if(ICL_LANGUAGE_CODE == "sv"){ ?>Filtrera resultat <?php }else{ ?> Filter Result <?php } ?>
+				</h3>
+			</div>
+			<?php
+				$posts_per_page = 5;
+				$args = array(
+					'post_type' => 'insights',
+					'post_status' => 'publish',
+					'posts_per_page' => $posts_per_page,
+					'orderby' => 'publish_date', 
+					'order' => 'DESC',
+					//'suppress_filters' => true,
+				);
+
+				// if(ICL_LANGUAGE_CODE == "en"){
+				// 	$args['tax_query'][] = array(
+				// 		'taxonomy' => 'insight_language',
+				// 		'field'    => 'slug',
+				// 		'terms'    => 'english',
+				// 	);
+				// }
+
+				$the_query = new WP_Query($args);
+				//print_r($the_query);exit;
+				$posts_count = $the_query->found_posts;
+				$max_pages = $the_query->max_num_pages;
+				$html = "";
+				if( $the_query->have_posts() ){
+					$i = 1;
+					while( $the_query->have_posts() ){
+						$the_query->the_post();
+						$insight_classes = array();
+						$cat = '';
+						$cat = get_field('category_for_display');
+						$imgurl = get_the_post_thumbnail( get_the_ID(), 'full' );
+						if(!$imgurl){
+							$imgurl = get_stylesheet_directory_uri().'/images/post-placeholder.png';
+						}
+						$pCont = get_the_excerpt();
+						if (strlen($pCont) > 80){
+			                $pCont = substr($pCont, 0, 80) . '...';
+			            }
+						
+						if($cat == ''){
+							$categories = get_the_terms( get_the_id(), 'insight_category' );
+							if ( ! empty( $categories ) ) {
+								$cat = esc_html( $categories[0]->name );
+							}
+						}
+						$post_tags = get_the_terms( get_the_id(), 'insight_tag' );
+						$post_tags_str = '';
+						if ( $post_tags ) {
+							foreach( $post_tags as $tag ) {
+								$post_tags_str .= '<span>'.$tag->name.'</span>';
+							}
+						}
+						$services = get_field('services');
+						if($services)foreach($services as $service){
+							if(!in_array($service->post_name, $insight_classes)){
+								$insight_classes[] = $service->post_name;
+							}
+						}
+						$industries = get_field('industries');
+						if($industries)foreach($industries as $industry){
+							if(!in_array($industry->post_name, $insight_classes)){
+								$insight_classes[] = $industry->post_name;
+							}
+						}
+						$formats = get_field('format_filters');
+						if($formats)foreach($formats as $format){
+							if(!in_array($format->post_name, $insight_classes)){
+								$insight_classes[] = $format->post_name;
+							}
+						}
+						$str = implode(" ", $insight_classes);
+						if($i == 1){
+							$cls = 'full-width-posts';
+						}else{
+							$cls = 'half-width-posts';
+						}
+						$html .= '<div class="posts services-item-outer grid-item '.$str.' '.$cls.'"  data-id="'.get_the_id().'">';
+						   $html .= '<div class="industries-banner">'.$imgurl.'</div>';
+						   $html .= '<div class="caption">';
+								$html .= '<div class="con">';
+								  $html .= '<h4>'.get_the_title().'</h4>';
+								  $html .= '<p>'.$pCont.'</p>';
+								  $html .= '<a href="#">READ MORE</a>';
+								$html .= '</div>';
+						   $html .= '</div>';
+						$html .= '</div>';
+						$i++;
+					}
+					wp_reset_postdata();
+				}
+
+				//Services_options
+				$s_args = array(
+					'post_type' => 'services',
+					'posts_per_page' => -1,
+					'order' => 'DESC',
+					'orderby' => 'menu_order',
+				);
+				$s_query = new WP_Query($s_args);
+
+				//Industries_options
+				$i_args = array(
+					'post_type' => 'industries',
+					'posts_per_page' => -1,
+					'order' => 'DESC',
+					'orderby' => 'menu_order',
+				);
+				$i_query = new WP_Query($i_args);
+			?>
+			<div class="col-xs-12 col-md-9">
+				<div class="row">
+					<?php if($s_query->have_posts()){ ?>
+					<div class="insight-filter col-sm-4 col-md-4">
+						<div class="form-group">
+							<select class="selectpicker service-filter form-control" data-filter-group="service">
+								<?php if(ICL_LANGUAGE_CODE == "sv"){ ?>
+									<option value="*" data-filter-value="">Välj tjänst</option>
+								<?php }else{ ?>
+									<option value="*" data-filter-value="">All services</option>
+								<?php } ?>
+								<?php while( $s_query->have_posts() ){
+										$s_query->the_post();
+										echo '<option value="'.get_the_id().'" data-filter-value=".'.get_post_field( 'post_name', get_the_id() ).'">'.get_the_title().'</option>';
+									}
+									wp_reset_postdata();
+								?>
+							</select>
+						</div>
+					</div>
+					<?php } ?>
+
+					<?php if($i_query->have_posts()){ ?>
+					<div class="insight-filter col-sm-4 col-md-4" style="width:32.5%">
+						<div class="form-group">
+							<select class="selectpicker industry-filter form-control" data-filter-group="industry">
+								<?php if(ICL_LANGUAGE_CODE == "sv"){ ?>
+									<option value="*" data-filter-value="">Välj bransch</option>
+								<?php }else{ ?>
+									<option value="*" data-filter-value="">All industries</option>
+								<?php } ?>
+								<?php
+									while( $i_query->have_posts() ){
+										$i_query->the_post();
+										echo '<option value="'.get_the_id().'" data-filter-value=".'.get_post_field( 'post_name', get_the_id() ).'">'.get_the_title().'</option>';
+									}
+									wp_reset_postdata();
+								?>
+							</select>
+						</div>
+					</div>
+					<?php } ?>
+
+					<div class="insight-filter col-sm-4 col-md-4" style="width:32.5%">
+						<div class="form-group">
+							<select class="selectpicker format-filter form-control" data-filter-group="format">
+							<?php if(ICL_LANGUAGE_CODE == "sv"){ ?>
+								<option value="*" data-filter-value="">Välj format</option>
+							<?php }else{ ?>
+								<option value="*" data-filter-value="">All formats</option>
+							<?php } ?>
+								<option value="article" data-filter-value=".article">Article</option>
+								<option value="case-references" data-filter-value=".article">Case/References</option>
+								<option value="events" data-filter-value=".article">Events</option>
+								<option value="whitepapers" data-filter-value=".article">Whitepapers</option>
+							</select>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="container-fluid current-filters-section section-wrap">
+			<div class="col-xs-12">
+				<?php if(ICL_LANGUAGE_CODE == "sv"){ ?>
+					<div class="current-filter-text">Nuvarande Filter:</div>
+				<?php }else{ ?>
+					<div class="current-filter-text">Current Filters:</div>
+				<?php } ?>
+				<div class="current-filters"></div>
+			</div>
+		</div>
+
+		<?php if($html){ ?>
+		<div class="container-fluid content-wrap section-wrap listing-section grey-bg border-top" style="padding-bottom: 10px">
+			<div class="home-slider">
+				<div class="cycle-slideshow home-slideshow insights-posts-wrap" data-cycle-slides="&gt; div" data-cycle-pager=".home-pager" data-cycle-timeout="5000" data-cycle-prev="#HomePrev" data-cycle-next="#HomeNext">
+				<?php echo $html; ?>
+				</div>
+				<?php if( ($max_pages) && ( $posts_count > $posts_per_page ) ){ ?>
+				<div class="col-xs-12 clearfix case-btn text-center insights-loadmore">
+				<?php } else { ?>
+				<div class="col-xs-12 clearfix case-btn text-center insights-loadmore hidden">
+				<?php } ?>
+					<a id="load-more" class="cust-btn gomo-loadmore" data-posts-per-page="<?php echo $posts_per_page; ?>" data-offset="<?php echo $posts_per_page; ?>" data-total="<?php echo $posts_count; ?>" data-max-pages="<?php echo $max_pages; ?>" data-lang="<?php if (defined('ICL_LANGUAGE_CODE')){echo ICL_LANGUAGE_CODE;} ?>" href="#"><?php echo get_field('load_more_button_text'); ?></a><i class="small-loader fa fa-spinner fa-spin" aria-hidden="true"></i>
+				</div>
+				<?php if(ICL_LANGUAGE_CODE == "sv"){ ?>
+					<div id="no-posts-msg" class="col-xs-12 notice">Förlåt! Inga insikter finns tillgängliga för de valda filtren</div>
+				<?php }else{ ?>
+					<div id="no-posts-msg" class="col-xs-12 notice">Sorry! No insights are available for the selected filters</div>
+				<?php } ?>
+			</div>
+		</div>
+		<?php } //endif ?>
+</div>
+</div>
+<?php endwhile; endif; ?>
+<?php get_footer(); ?>
